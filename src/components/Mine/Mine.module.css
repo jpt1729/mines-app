@@ -1,0 +1,41 @@
+.mine {
+  width: var(--mine-size);
+  height: var(--mine-size); 
+  border: none;
+  padding: 0;
+  background: none;
+  perspective: 1000px;
+  background-color: transparent;
+}
+.innerMine {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1.3s;
+  transform-style: preserve-3d;
+}
+.innerMine:hover {
+    transform: rotateY(-35deg);
+}
+.frontMine, .backMine {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 4px;
+  }
+.frontMine {
+  width: var(--mine-size);
+  background: #d9d9d9;
+}
+.backMine {
+  background-color: #0B1215;
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

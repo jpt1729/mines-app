@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { createSignal } from "solid-js";
+
+import styles from "./App.module.css";
+import Mine from "./components/Mine";
+import { mineMapTest } from "./components/Mine/mine-map";
 
 function App() {
+  const [mineMap, setMineMap] = createSignal(mineMapTest)
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
+    <main class={styles.App}>
+      <div id={styles.Mines}>
+        {mineMap() &&
+          mineMap().map((mineRow, _i) => {
+            return mineRow.map((mineValue, _j) => {
+              return <Mine value={mineValue.value} mineMap={mineMap} updateMineMap={setMineMap} position={[_i, _j]} key={_i} />;
+            });
+          })}
+      </div>
+    </main>
   );
 }
 
