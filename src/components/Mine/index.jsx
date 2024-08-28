@@ -2,7 +2,7 @@ import { createSignal } from "solid-js";
 
 import styles from "./Mine.module.css";
 
-export default function Mine({ value, onClick, gameRunning }) {
+export default function Mine({ value, onClick, gameRunning, locked }) {
   const [clicked, setClicked] = createSignal(false);
   return (
     <>
@@ -10,8 +10,10 @@ export default function Mine({ value, onClick, gameRunning }) {
         class={styles.mine}
         onClick={() => {
           if (gameRunning().running) {
-            setClicked(true);
-            onClick();
+            if (!locked()) {
+              setClicked(true);
+              onClick();
+            }
           }
         }}
         disabled={clicked()}
